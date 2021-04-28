@@ -1,2 +1,3 @@
 # Social-People
-Python Project with Anton and Nurmukhamed
+Python Project with Insan and Nurmukhamed
+Dattebayo!!!
