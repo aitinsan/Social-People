@@ -11,4 +11,7 @@ urlpatterns = [
 
     path('food-add', FoodAddView,name='food-add'),
     path('food-edit/<int:food_id>', FoodEditView,name='food-edit'),
+
+    path('ex-add',ExAddView,name='ex-add'),
+    path('ex-edit/<int:ex_id>', ExEditView,name='ex-edit'),
     ]

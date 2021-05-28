@@ -22,4 +22,5 @@ from django.http import HttpResponse
 urlpatterns = [
     path('admin/', include('admin_panel.urls')),
     path('django_admin/', admin.site.urls),
+    path('',include('front.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

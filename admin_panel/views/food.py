@@ -52,3 +52,48 @@ def FoodEditView(request,food_id):
         'food':food
     }
     return render(request,'admin_panel/admin-food-edit.html',context)
+
+
+def ExAddView(request):
+    ex = Exercise.objects.all()
+    if request.method == 'POST':
+        name = request.POST['name']
+        calories = request.POST['calories']
+        time = request.POST['time']
+        img = request.FILES.get('img')
+        Exercise.objects.create(name=name,calories=calories,time=time,img=img)
+        return redirect('ex-add')
+    context = {
+        'exe':ex,
+    }
+    return render(request,'admin_panel/admin-ex-add.html',context)
+
+def ExEditView(request,ex_id):
+    ex = get_object_or_404(Exercise,pk=ex_id)
+    if request.method == 'POST':
+        type = request.POST['form']
+        if type == 'edit':
+            name = request.POST['name']
+            calories = request.POST['calories']
+            time = request.POST['time']
+            img = request.FILES.get('img')
+            if img == None:
+                ex.name = name
+                ex.time = time
+                ex.calories = calories
+                ex.save()
+                return redirect('ex-edit',ex_id)
+            else:
+                ex.name = name
+                ex.time = time
+                ex.calories = calories
+                ex.img = img
+                ex.save()
+                return redirect('ex-edit',ex_id)
+        if type == 'delete':
+            ex.delete()
+            return redirect('ex-add')
+    context = {
+        'ex':ex
+    }
+    return render(request,'admin_panel/admin-ex-edit.html',context)

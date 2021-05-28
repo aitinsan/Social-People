@@ -22,6 +22,8 @@
                 </li>
                 <li class="{% if request.path == '/admin/food-add' or  food.pk %}active {% endif %}nav-item"><a href="{% url 'food-add' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Добавить еду</span></a>
                 </li>
+                <li class="{% if request.path == '/admin/ex-add' or  food.pk %}active {% endif %}nav-item"><a href="{% url 'ex-add' %}"><i class="menu" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Добавить тренировку</span></a>
+                </li>
 
 
             </ul>
