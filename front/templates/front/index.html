@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Главная</title>
+     {% block css %}
+      {% include 'front/cssloader.html' %}
+      {% endblock %}
+      <link rel="stylesheet" href="{% static 'front/css/Главная.css' %}">
+    <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"url": "index.html",
+		"logo": "images/Capture.PNG"
+}</script>
+    <meta property="og:title" content="Главная">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#478ac9">
+    <link rel="canonical" href="index.html">
+    <meta property="og:url" content="index.html">
+  </head>
+  <body class="u-body">
+  {% block header %}
+    {% include 'front/headerload.html' %}
+  {% endblock header %}
+    <section class="u-clearfix u-custom-color-5 u-section-1" id="sec-92e2">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-col">
+                {% if request.user.is_authenticated %}
+                        <div class="u-size-30">
+                <div class="u-layout-row">
+                  <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+                    <div class="u-container-layout u-container-layout-1">
+                      <h6 class="u-text u-text-custom-color-3 u-text-1">Ваше потребляемое количество калорий<br>
+                      </h6>
+                      <div class="u-container-style u-custom-color-7 u-group u-radius-50 u-shape-round u-group-1">
+                        <div class="u-container-layout u-container-layout-2">
+                          <h3 class="u-text u-text-2">{{ calories_sum }}</h3>
+                        </div>
+                      </div>
+                      <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+
+                      <h6 class="u-text u-text-4" style="color:white">белки</h6>
+                      <h6 class="u-text u-text-custom-color-3 u-text-5">{{proteins_sum}}<br>
+                      </h6>
+                      <div class="u-shape u-shape-svg u-text-custom-color-8 u-shape-1">
+                        <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 160" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c018"></use></svg>
+                        <svg class="u-svg-content" viewBox="0 0 160 160" x="0px" y="0px" id="svg-c018"><path d="M160,0v160H0V0H160z"></path></svg>
+                      </div>
+                      <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-2"></div>
+                      <h6 class="u-text u-text-6" style="color:white">жиры</h6>
+                      <h6 class="u-text u-text-custom-color-3 u-text-7">{{fats_sum}}</h6>
+                      <div class="u-shape u-shape-svg u-text-custom-color-10 u-shape-2">
+                        <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 160" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-175b"></use></svg>
+                        <svg class="u-svg-content" viewBox="0 0 160 160" x="0px" y="0px" id="svg-175b"><path d="M160,0v160H0V0H160z"></path></svg>
+                      </div>
+                      <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-3"></div>
+                      <h6 class="u-text u-text-8" style="color:white">углеводы</h6>
+                      <h6 class="u-text u-text-custom-color-3 u-text-9">{{carbo_sum}}<br>
+                      </h6>
+                      <div class="u-shape u-shape-svg u-text-custom-color-9 u-shape-3">
+                        <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 160" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-bc16"></use></svg>
+                        <svg class="u-svg-content" viewBox="0 0 160 160" x="0px" y="0px" id="svg-bc16"><path d="M160,0v160H0V0H160z"></path></svg>
+                      </div>
+                      <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-4"></div>
+                    </div>
+                  </div>
+                  <div class="u-container-style u-grey-70 u-layout-cell u-size-30 u-layout-cell-2">
+                    <div class="u-container-layout u-container-layout-3">
+                      <h4 class="u-text u-text-body-color u-text-11">{{ request.user }}</h4>
+                      <h6 class="u-text u-text-custom-color-3 u-text-11" >Сжигаемые калории</h6>
+                      <div class="u-container-style u-custom-color-7 u-group u-radius-50 u-shape-round u-group-2">
+                        <div class="u-container-layout u-container-layout-4">
+                          <h3 class="u-text u-text-12">{{ total_calo }}</h3>
+                        </div>
+                      </div>
+                      <div alt="" class="u-image u-image-circle u-image-1" data-image-width="272" data-image-height="282"></div>
+                      <div class="u-shape u-shape-svg u-text-custom-color-8 u-shape-4">
+                        <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 140" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-0a78"></use></svg>
+                        <svg class="u-svg-content" viewBox="0 0 160 140" x="0px" y="0px" id="svg-0a78"><path d="M120,140H40L0,70L40,0h80l40,70L120,140z"></path></svg>
+                      </div>
+                      <h6 class="u-text u-text-13" style="color:white">тренировки</h6>
+                      <h6 class="u-text u-text-custom-color-3 u-text-14">{{ex_calo}}</h6>
+                      <div class="u-shape u-shape-svg u-text-custom-color-9 u-shape-5">
+                        <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 140" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8c71"></use></svg>
+                        <svg class="u-svg-content" viewBox="0 0 160 140" x="0px" y="0px" id="svg-8c71"><path d="M120,140H40L0,70L40,0h80l40,70L120,140z"></path></svg>
+                      </div>
+                      <h6 class="u-text u-text-15" style="color:white">ежедневное</h6>
+                      <h6 class="u-text u-text-custom-color-3 u-text-16">700<br>
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                        <div class="u-size-30">
+                <div class="u-layout-row">
+                  <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-3">
+                    <div class="u-container-layout u-container-layout-5">
+                      <a href="{% url 'recomendtaions' %}" data-page-id="597125851" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-2">Рекомендации</a>
+                    </div>
+                  </div>
+                  <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-4">
+                    <div class="u-container-layout u-valign-top u-container-layout-8">
+                      <a href="{% url 'exercises' %}" data-page-id="33857407" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-3">Тренировки</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                    {% else %}
+                      <div class="u-size-30">
+                <div class="u-layout-row">
+                  <div class="u-container-style u-grey-70 u-layout-cell u-size-100 u-layout-cell-2">
+                    <div class="u-container-layout u-container-layout-3">
+                        <h2><a href="{% url 'front-login' %}">Войдите</a> или <a href="{% url 'front-reg' %}">зарегистрируйтесь</a> для отображения информации</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-d30d"><p class="u-small-text u-text u-text-variant u-text-1">@aitpy m 2021</p></footer>
+    
+  </body>
+</html>

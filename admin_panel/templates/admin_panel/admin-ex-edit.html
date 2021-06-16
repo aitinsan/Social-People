@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Account Settings - Frest - Bootstrap HTML admin template</title>
+
+    {% block cssLoader %}
+    {% include 'admin_panel/cssLoader.html' %}
+    {% endblock cssLoader %}
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-sticky footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
+
+    <!-- BEGIN: Header-->
+    {% block content %}
+    {% include 'admin_panel/headerFORM.html' %}
+    {% endblock %}
+    <!-- END: Header-->
+
+
+      <!-- BEGIN: Main Menu-->
+    {% block menu %}
+    {% include 'admin_panel/mainMenuFORM.html' %}
+    {% endblock menu %}
+   <!-- END: Main Menu-->
+
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-12 mb-2 mt-1">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h5 class="content-header-title float-left pr-1 mb-0">Изменение тренировки: {{ ex.name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- account setting page start -->
+                <section id="page-account-settings">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <!-- right content section -->
+                                <div class="col-md-9">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="tab-content">
+                                                    <div role="tabpanel" class="tab-panel active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
+                                                        <form action="{% url 'ex-edit' ex.pk %}" method="POST" enctype="multipart/form-data">
+                                                             {% csrf_token %}
+                                                            <input type="hidden" name="form" value="edit">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <div class="controls">
+                                                                            <label>Название</label>
+                                                                            <input type="text" class="form-control" name = "name" placeholder="Название" value="{{ ex.name }}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <div class="controls">
+                                                                            <label>Калории</label>
+                                                                            <input type="text" class="form-control" name = "calories" placeholder="Калории"  value="{{ ex.calories }}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <div class="controls">
+                                                                            <label>Белки</label>
+                                                                            <input type="text" class="form-control" name = "time" placeholder="Белки" value="{{ ex.time }}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                              <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <div class="controls">
+                                                                            <label>Фото</label>
+                                                                            <input type="file" name="img">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+                                                                    <button type="submit" class="btn btn-primary glow mr-sm-1 mb-1">Отправить</button>
+                                                                    <a href="{% url 'ex-add' %}" class="btn btn-light mb-1">Закрыть</a>
+                                                                    <button type="button" class="btn btn-danger mb-1 ml-1" data-toggle="modal" data-target="#deleteForm{{ex.pk}}">Удалить</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <div class="modal text-left" id="deleteForm{{ex.pk}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                  <div class="modal-content">
+
+                                                                      <div class="modal-body">
+                                                                          <div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"><span class="swal2-icon-text">!</span></div>
+                                                                          <h4 class="modal-title text-center" >Вы действительно хотите удалить тренировку?</h4>
+                                                                          <p class="text text-center">Данное действие невозможно отменить.</p>
+                                                                      <div class="mt-2 d-flex flex-sm-row flex-column justify-content-center">
+                                                                        <a type="reset" class="btn btn-light mb-1 mr-sm-1 text-white" data-dismiss="modal" aria-label="Close">Закрыть</a>
+                                                                       <input type="submit" class="btn btn-danger mb-1" form="delete-tarif{{ex.pk}}" value="Удалить тренировку">
+                                                                      </div>
+                                                                      </div>
+
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                                    <form action="{% url 'ex-edit' ex.pk %}" method="post" id="delete-tarif{{ex.pk}}">
+                                                                        {% csrf_token %}
+                                                                         <input type="hidden" name="form" value="delete">
+                                                                    </form>
+                                                    </div>
+
+
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                   <section class="users-list-wrapper">
+                      <div class="users-list-table">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <!-- datatable start -->
+                                     <div class="col-12">
+                                        <h5 class="content-header-title float-left pr-1 mb-0">Фото тренировки</h5>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <img src="/media/{{ ex.img }}" width="200px" height="200px" alt="">
+                                    <!-- datatable ends -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- account setting page ends -->
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <!-- BEGIN: Footer-->
+    {% block footer %}
+    {% include 'admin_panel/footerFORM.html' %}
+    {% endblock footer %}
+    <!-- END: Footer-->
+
+
+
+    {% block jsLoader %}
+    {% include 'admin_panel/jsLoader.html' %}
+    {% endblock jsLoader %}
+
+</body>
+<!-- END: Body-->
+
+</html>
